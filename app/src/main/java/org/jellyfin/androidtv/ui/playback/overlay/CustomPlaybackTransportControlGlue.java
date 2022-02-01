@@ -36,7 +36,6 @@ import org.jellyfin.androidtv.ui.playback.overlay.action.PreviousLiveTvChannelAc
 import org.jellyfin.androidtv.ui.playback.overlay.action.RecordAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.SelectAudioAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.SelectQualityAction;
-import org.jellyfin.androidtv.ui.playback.overlay.action.SelectAudioOutputAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.ZoomAction;
 import org.koin.java.KoinJavaComponent;
 
@@ -53,7 +52,6 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
     private ClosedCaptionsAction closedCaptionsAction;
     private PlaybackSpeedAction playbackSpeedAction;
     private SelectQualityAction selectQualityAction;
-    private SelectAudioOutputAction selectAudioOutputAction;
     private AdjustAudioDelayAction adjustAudioDelayAction;
     private ZoomAction zoomAction;
     private ChapterAction chapterAction;
@@ -186,8 +184,6 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
         playbackSpeedAction.setLabels(new String[]{context.getString(R.string.lbl_playback_speed)});
         selectQualityAction = new SelectQualityAction(context, this, playbackController);
         selectQualityAction.setLabels(new String[]{context.getString(R.string.lbl_quality_profile)});
-        selectAudioOutputAction = new SelectAudioOutputAction(context, this, playbackController);
-        selectAudioOutputAction.setLabels(new String[]{context.getString(R.string.lbl_audio_output)});
         adjustAudioDelayAction = new AdjustAudioDelayAction(context, this);
         adjustAudioDelayAction.setLabels(new String[]{context.getString(R.string.lbl_audio_delay)});
         zoomAction = new ZoomAction(context, this);
@@ -257,7 +253,6 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
             }
         } else {
             secondaryActionsAdapter.add(selectQualityAction);
-            secondaryActionsAdapter.add(selectAudioOutputAction);
         }
 
         if (hasNextItem()) {
@@ -311,9 +306,6 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
         }  else if (action == selectQualityAction) {
             getPlayerAdapter().getLeanbackOverlayFragment().setFading(false);
             selectQualityAction.handleClickAction(playbackController, getPlayerAdapter().getLeanbackOverlayFragment(), getContext(), view);
-        }  else if (action == selectAudioOutputAction) {
-            getPlayerAdapter().getLeanbackOverlayFragment().setFading(false);
-            selectAudioOutputAction.handleClickAction(playbackController, getPlayerAdapter().getLeanbackOverlayFragment(), getContext(), view);
         }  else if (action == adjustAudioDelayAction) {
             getPlayerAdapter().getLeanbackOverlayFragment().setFading(false);
             adjustAudioDelayAction.handleClickAction(playbackController, getPlayerAdapter().getLeanbackOverlayFragment(), getContext(), view);
