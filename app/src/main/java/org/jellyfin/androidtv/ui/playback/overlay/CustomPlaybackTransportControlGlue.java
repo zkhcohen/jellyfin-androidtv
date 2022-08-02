@@ -271,7 +271,6 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
         } else {
             secondaryActionsAdapter.add(zoomAction);
         }
-
     }
 
     @Override
